@@ -1,4 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log(window.innerWidth);
+    console.log(window.innerHeight)
+
     const welcomeText = "Luminous Pursuit";
     const welcomeDiv = document.getElementById("welcome");
 
@@ -36,29 +39,31 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentScene = 0;
     let isFlag = false;
     window.addEventListener("wheel", (event) => {
-        if (currentScene < 0 || currentScene >= sections.length || isFlag) {
-            return;
-        }
-
-        isFlag = true;
-        const direction = Math.sign(event.deltaY);
-        if (direction > 0) {
-            if (currentScene < sections.length - 1) {
-                currentScene++;
+        if (window.innerWidth >= 1280) {
+            if (currentScene < 0 || currentScene >= sections.length || isFlag) {
+                return;
             }
-        } else {
-            if (currentScene > 0) {
-                currentScene--;
+
+            isFlag = true;
+            const direction = Math.sign(event.deltaY);
+            if (direction > 0) {
+                if (currentScene < sections.length - 1) {
+                    currentScene++;
+                }
+            } else {
+                if (currentScene > 0) {
+                    currentScene--;
+                }
             }
+
+            sections[currentScene].scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+
+            setTimeout(() => {
+                isFlag = false;
+            }, 200);
         }
-
-        sections[currentScene].scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
-
-        setTimeout(() => {
-            isFlag = false;
-        }, 200);
     });
 });
