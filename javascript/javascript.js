@@ -1,7 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-    console.log(window.innerWidth);
-    console.log(window.innerHeight)
-
     const welcomeText = "Luminous Pursuit";
     const welcomeDiv = document.getElementById("welcome");
 
@@ -27,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         setTimeout(() => {
+            welcomeDiv.remove();
             for (let i of sections) {
                 setTimeout(() => {
                     i.style.opacity = "1";
